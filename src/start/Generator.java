@@ -29,6 +29,7 @@ public class Generator
 		this.amountY = amountY;
 		rooms = new Room[amountY][amountX];
 	}
+	
 	/**
 	 * 
 	 * Erstellt die Räume und schaut in welche Richtung man gehen kann und in Welche nicht
@@ -74,12 +75,67 @@ public class Generator
 					north = true;
 					east = true;
 				}
-				
+				// Über folgende Seite habe ich mich über das Zufalls-prinzip informiert https://www.geeksforgeeks.org/java-util-random-nextint-java/
+				int randInt = rand.nextInt(4);
+				if (randInt == 1)
+				{
+					rooms[y][x] = new Room(north, east, south, west, x, y, createMonster());
+				} else if (randInt == 2)
+				{
+					rooms[y][x] = new Room(north, east, south, west, x, y, createItem());
+				} else if (randInt == 3)
+				{
+					rooms[y][x] = new Room(north, east, south, west, x, y, createMonster(), createItem());
+				} else
+				{
+					rooms[y][x] = new Room(north, east, south, west, x, y);
+				}
 
 			}
 		}
 
 		rooms[0][0].setEnd(true);
 	}
+	/*
+	 * Erstellt Monster-Objekt
+	 */
+	public Monster createMonster()
+	{
+		Monster mon = new Monster(10, 2, "Rat");
+		return mon;
+	}
+	/*
+	 * Erstellt Item-Objekt
+	 */
+	public Item createItem()
+	{
+		Item item = new Item(15, 2, "Key");
+		return item;
+	}
+	/*
+	 * @param allItems Spiechert alle Items des SPieler 
+	 * Weisst dem Spieler die Items zu, die er aufgenommen hat.
+	 */
+	public String generateItemsToString(Player player)
+	{
+		String allItems = "";
+		int counter = 0;
+		for (Item item : player.getFoundItems())
+		{
+			if (counter == 0)
+			{
+				allItems += "a " + item.getName();
+				counter++;
+			} else
+			{
+				allItems += ", a " + item.getName() + " ";
+			}
+		}
+		if (allItems.equals(""))
+		{
+			allItems = "no item.";
+		}
+
+		return allItems;
+	}
 }
-	
