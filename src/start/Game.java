@@ -103,7 +103,7 @@ public class Game
 			{
 				if (currentRoom.getItem() != null)
 				{
-					System.out.println(player.getName() + " hat einen " + currentRoom.getItem().getName() + "aufgenommen!");
+					System.out.println(player.getName() + " hat einen " + currentRoom.getItem().getName() + " aufgenommen!");
 					player.addItem(currentRoom.getItem());
 					currentRoom.setItem(null);
 				} else
@@ -185,7 +185,7 @@ public class Game
 				}
 					if (currentRoom.getMonster() != null)
 					{
-						System.out.println("Oh nein hier ist eine " + currentRoom.getMonster().getName() + "!");
+						System.out.println("Oh nein hier ist ein " + currentRoom.getMonster().getName() + "!");
 					}
 					break;
 				}

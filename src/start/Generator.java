@@ -94,14 +94,14 @@ public class Generator
 			}
 		}
 
-		rooms[0][0].setEnd(true);
+		rooms[2][2].setEnd(true);
 	}
 	/*
 	 * Erstellt Monster-Objekt
 	 */
 	public Monster createMonster()
 	{
-		Monster mon = new Monster(10, 2, "Rat");
+		Monster mon = new Monster(10, 2, "Hurensohn");
 		return mon;
 	}
 	/*
@@ -109,7 +109,7 @@ public class Generator
 	 */
 	public Item createItem()
 	{
-		Item item = new Item(15, 2, "Key");
+		Item item = new Item(15, 2, "Schlüssel");
 		return item;
 	}
 	/*

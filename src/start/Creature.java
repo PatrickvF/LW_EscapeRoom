@@ -5,7 +5,7 @@ package start;
  * @author patrick.von-fluee
  *
  */
-public class Creature
+public abstract class Creature
 {
 	private String name;
 	private int hp;
