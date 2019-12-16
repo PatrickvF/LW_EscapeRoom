@@ -41,6 +41,18 @@ public class Game
 			System.out.println("Inkorrekte Eingabe, normal wird ausgewählt");
 			break;
 		}
+		gen.createRooms();
+		Walk move = new Walk(gen.rooms);
+		Room currentRoom = gen.rooms[0][0];
+		Room newRoom;
+		String option = "";
+		int exit = 0;
+
+		System.out.println("Du wachst auf nachdem du bewusstlos wurdest");
+		System.out.println("Es sieht so aus, als ob du in einem unbewohnten Haus bist");
+		System.out.println("Du musst aus dem Haus entkommen!!!");
+		System.out.println("Drücke h für die Steuerung.");
+
 
 		}
 	}
