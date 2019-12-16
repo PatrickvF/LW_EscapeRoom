@@ -1,5 +1,6 @@
 package Player;
 
-public interface IBattle {
-
+public interface IBattle
+{
+	public void takeDamage(int dmg);
 }
