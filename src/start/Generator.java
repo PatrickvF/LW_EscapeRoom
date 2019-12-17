@@ -13,7 +13,7 @@ import Player.Player;
  */
 public class Generator
 {
-	Room[][] rooms;
+	private Room[][] rooms;
 	int amountX;
 	int amountY;
 	
@@ -27,7 +27,7 @@ public class Generator
 	{
 		this.amountX = amountX;
 		this.amountY = amountY;
-		rooms = new Room[amountY][amountX];
+		setRooms(new Room[amountY][amountX]);
 	}
 	
 	/**
@@ -46,11 +46,11 @@ public class Generator
 				boolean east = false;
 				boolean south = false;
 				boolean west = false;
-				if (x > 0 && rooms[y][x - 1].isEast())
+				if (x > 0 && getRooms()[y][x - 1].isEast())
 				{
 					west = true;
 				}
-				if (y > 0 && rooms[y - 1][x].isNorth())
+				if (y > 0 && getRooms()[y - 1][x].isNorth())
 				{
 					south = true;
 				}
@@ -79,22 +79,21 @@ public class Generator
 				int randInt = rand.nextInt(4);
 				if (randInt == 1)
 				{
-					rooms[y][x] = new Room(north, east, south, west, x, y, createMonster());
+					getRooms()[y][x] = new Room(north, east, south, west, x, y, createMonster());
 				} else if (randInt == 2)
 				{
-					rooms[y][x] = new Room(north, east, south, west, x, y, createItem());
+					getRooms()[y][x] = new Room(north, east, south, west, x, y, createItem());
 				} else if (randInt == 3)
 				{
-					rooms[y][x] = new Room(north, east, south, west, x, y, createMonster(), createItem());
+					getRooms()[y][x] = new Room(north, east, south, west, x, y, createMonster(), createItem());
 				} else
 				{
-					rooms[y][x] = new Room(north, east, south, west, x, y);
+					getRooms()[y][x] = new Room(north, east, south, west, x, y);
 				}
 
 			}
 		}
-
-		rooms[2][2].setEnd(true);
+		getRooms()[rand.nextInt(5)][rand.nextInt(5)].setEnd(true);
 	}
 	/*
 	 * Erstellt Monster-Objekt
@@ -137,5 +136,13 @@ public class Generator
 		}
 
 		return allItems;
+	}
+
+	public Room[][] getRooms() {
+		return rooms;
+	}
+
+	public void setRooms(Room[][] rooms) {
+		this.rooms = rooms;
 	}
 }

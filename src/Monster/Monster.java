@@ -5,6 +5,7 @@ import start.Creature;
 
 /**
  * Monster Klasse ist eine Spezialisierung der Creature Klasse
+ * Die Klasse soll die Gegner in den einzelnen Räumen darstellen
  * @author patrick.von-fluee
  *
  */
@@ -24,7 +25,7 @@ public class Monster extends Creature implements IBattle
 	}
 	
 	/**
-	 * Getter für HP in der Basisklasse
+	 * Getter für HP 
 	 */
 	public int getHp()
 	{

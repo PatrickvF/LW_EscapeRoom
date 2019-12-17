@@ -6,10 +6,12 @@ package start;
  *
  */
 public abstract class Creature
+
 {
 	private String name;
 	private int hp;
 
+	
 	public Creature()
 	{
 		super();

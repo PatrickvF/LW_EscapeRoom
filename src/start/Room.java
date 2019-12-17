@@ -5,7 +5,8 @@ import Monster.Monster;
 /**
  * 
  * @author patrick.von-fluee
- * Die Klasse Raum erstellt die Räume die nacher in der Generatorklasse generiert werden
+ * Die Klasse Raum erstellt die Räume die nacher in der Generatorklasse generiert werden.
+ * Hier weden die "Art" der Räume festgelegt und was Sie beinhalten.
  *
  */
 public class Room

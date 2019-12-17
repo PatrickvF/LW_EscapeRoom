@@ -1,8 +1,11 @@
-package start;
+package Controller;
 
 import java.util.Scanner;
 
 import Player.Player;
+import start.Generator;
+import start.Room;
+import start.Walk;
 
 public class Game
 {
@@ -45,8 +48,8 @@ public class Game
 		}
 
 		gen.createRooms();
-		Walk move = new Walk(gen.rooms);
-		Room currentRoom = gen.rooms[0][0];
+		Walk move = new Walk(gen.getRooms());
+		Room currentRoom = gen.getRooms()[0][0];
 		Room newRoom;
 		String option = "";
 		int exit = 0;
