@@ -7,11 +7,15 @@ import start.Generator;
 import start.Room;
 import start.Walk;
 
-public class Game
-{
+/**
+ * Die Game-Klasse ist der Controller des Spiels. Hier
+ * 
+ * @author patrick.von-fluee
+ *
+ */
+public class Game {
 
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		Player player = new Player();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Gebe bitte deinen Namen ein: ");
@@ -21,25 +25,20 @@ public class Game
 		String difficulty = sc.nextLine();
 		Generator gen;
 
-		switch (difficulty)
-		{
-		case "easy":
-		{
+		switch (difficulty) {
+		case "easy": {
 			gen = new Generator(5, 5);
 			break;
 		}
-		case "normal":
-		{
+		case "normal": {
 			gen = new Generator(10, 10);
 			break;
 		}
-		case "hard":
-		{
+		case "hard": {
 			gen = new Generator(15, 15);
 			break;
 		}
-		default:
-		{
+		default: {
 			gen = new Generator(10, 10);
 			System.out.println("Inkorrekte Eingabe, normal wird ausgewählt");
 			break;
@@ -59,14 +58,11 @@ public class Game
 		System.out.println("Du musst aus dem Haus entkommen!!!");
 		System.out.println("Drücke h für die Steuerung.");
 
-		while (exit == 0)
-		{
+		while (exit == 0) {
 			System.out.print("Was willst du machen? ->  ");
 			option = sc.nextLine();
-			switch (option)
-			{
-			case "h":
-			{
+			switch (option) {
+			case "h": {
 				System.out.println("Du kannst dich durch Räume mit n, e, s, w bewegen.");
 				System.out.println("Du kannst mit c den Raum nach Items durchsuchen.");
 				System.out.println("Deine Items kannst du mit i nachsehen.");
@@ -74,134 +70,104 @@ public class Game
 				break;
 			}
 
-			case "i":
-			{
+			case "i": {
 				String allItems = " " + gen.generateItemsToString(player);
 
 				System.out.println("Du hast momentan " + allItems);
 				break;
 			}
 
-			case "f":
-			{
-				if (player.getFoundItems().size() != 0)
-				{
-					if (player.getFoundItems().get(0).getName().equals("Key") && currentRoom.isEnd())
-					{
+			case "f": {
+				if (player.getFoundItems().size() != 0) {
+					if (player.getFoundItems().get(0).getName().equals("Key") && currentRoom.isEnd()) {
 						System.out.println("Du hast den Fluchtweg aufgeschlossen und bist geflohen!");
 						exit = 1;
 						sc.close();
-					} else if (player.getFoundItems().get(0).getName().equals("Key") && !currentRoom.isEnd())
-					{
+					} else if (player.getFoundItems().get(0).getName().equals("Key") && !currentRoom.isEnd()) {
 						System.out.println("Du hast einen Schlüssel, aber hier ist kein Fluchtweg...");
 					}
-				} else
-				{
+				} else {
 					System.out.println("Du hast nichts um fliehen zu können...");
 				}
 				break;
 			}
 
-			case "c":
-			{
-				if (currentRoom.getItem() != null)
-				{
-					System.out.println(player.getName() + " hat einen " + currentRoom.getItem().getName() + " aufgenommen!");
+			case "c": {
+				if (currentRoom.getItem() != null) {
+					System.out.println(
+							player.getName() + " hat einen " + currentRoom.getItem().getName() + " aufgenommen!");
 					player.addItem(currentRoom.getItem());
 					currentRoom.setItem(null);
-				} else
-				{
+				} else {
 					System.out.println("Hier drin ist nichts...");
 				}
 
 				break;
 			}
-			case "n":
-			{
+			case "n": {
 				newRoom = move.walkNorth(currentRoom);
-				if (newRoom != null)
-				{
+				if (newRoom != null) {
 					System.out.println("nach Norden bewegt");
 					currentRoom = newRoom;
-				}
-				else {
-					System.out.println("Da ist keine Türe");
-				}
-				
-					if (currentRoom.getMonster() != null)
-					{
-						System.out.println("Oh nein hier ist eine " + currentRoom.getMonster().getName() + "!");
-					}
-				break;
-			}
-				
-			
-			case "e":
-			{
-				newRoom = move.walkEast(currentRoom);
-				if (newRoom != null)
-				{
-					System.out.println("Nach Osten bewegt");
-					currentRoom = newRoom;
-				}
-				else {
+				} else {
 					System.out.println("Da ist keine Türe");
 				}
 
-					if (currentRoom.getMonster() != null)
-					{
-						System.out.println("Oh nein hier ist eine " + currentRoom.getMonster().getName() + "!");
-					}
-					break;
+				if (currentRoom.getMonster() != null) {
+					System.out.println("Oh nein hier ist eine " + currentRoom.getMonster().getName() + "!");
 				}
-				
-			
-			case "s":
-			{
+				break;
+			}
+
+			case "e": {
+				newRoom = move.walkEast(currentRoom);
+				if (newRoom != null) {
+					System.out.println("Nach Osten bewegt");
+					currentRoom = newRoom;
+				} else {
+					System.out.println("Da ist keine Türe");
+				}
+
+				if (currentRoom.getMonster() != null) {
+					System.out.println("Oh nein hier ist eine " + currentRoom.getMonster().getName() + "!");
+				}
+				break;
+			}
+
+			case "s": {
 				newRoom = move.walkSouth(currentRoom);
-				if (newRoom != null)
-				{
+				if (newRoom != null) {
 					System.out.println("Nach Süden bewegt");
 					currentRoom = newRoom;
-				}
-				else {
+				} else {
 					System.out.println("Da ist keine Türe");
 				}
-					if (currentRoom.getMonster() != null)
-					{
-						System.out.println("Oh nein hier ist eine " + currentRoom.getMonster().getName() + "!");
-					}
-					break;
+				if (currentRoom.getMonster() != null) {
+					System.out.println("Oh nein hier ist eine " + currentRoom.getMonster().getName() + "!");
 				}
-				
-			
-			case "w":
-			{
+				break;
+			}
+
+			case "w": {
 				newRoom = move.walkWest(currentRoom);
-				if (newRoom != null)
-				{
+				if (newRoom != null) {
 					System.out.println("Nach Westen bewegt");
 					currentRoom = newRoom;
-				}
-				else {
+				} else {
 					System.out.println("Da ist keine Türe");
 				}
-					if (currentRoom.getMonster() != null)
-					{
-						System.out.println("Oh nein hier ist ein " + currentRoom.getMonster().getName() + "!");
-					}
-					break;
+				if (currentRoom.getMonster() != null) {
+					System.out.println("Oh nein hier ist ein " + currentRoom.getMonster().getName() + "!");
 				}
-				
-			
-			case "exit":
-			{
+				break;
+			}
+
+			case "exit": {
 				exit = 1;
 				sc.close();
 				break;
 			}
-			default:
-			{
+			default: {
 				System.out.println("Falsche Eingabe");
 				break;
 			}
