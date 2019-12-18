@@ -1,7 +1,7 @@
 package start;
 
 /**
- * BAsisklasse von Player und Monster
+ * Abstrakte Basisklasse von Player und Monster
  * 
  * @author patrick.von-fluee
  *

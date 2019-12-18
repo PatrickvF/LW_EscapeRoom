@@ -9,7 +9,7 @@ import start.Creature;
 /**
  * 
  * @author patrick.von-fluee Die Klasse ist eine Spezialisierung der Klasse
- *         Creature
+ *         Creature. Hier wird alles für den Player definiert.
  *
  */
 public class Player extends Creature implements IBattle {

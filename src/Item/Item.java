@@ -2,7 +2,7 @@ package Item;
 
 /**
  * 
- * @author pvonf Item Klasse für Keys
+ * @author pvonf Item Klasse für den Spieler
  *
  */
 public class Item {

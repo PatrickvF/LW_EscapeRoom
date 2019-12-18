@@ -8,14 +8,22 @@ import start.Room;
 import start.Walk;
 
 /**
- * Die Game-Klasse ist der Controller des Spiels. Hier
+ * Die Game-Klasse ist der Controller des Spiels.
  * 
  * @author patrick.von-fluee
  *
  */
 public class Game {
-
+	
+	/**
+	 * In der Main-Methode wird alles erstellte. 
+	 *
+	 * @param args
+	 */
 	public static void main(String[] args) {
+		/**
+		 * Instanzen werden angelegt und Eingegebener name sowie ausgewählte Schwierigkeit wird definiert.
+		 */
 		Player player = new Player();
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Gebe bitte deinen Namen ein: ");
@@ -45,7 +53,9 @@ public class Game {
 		}
 
 		}
-
+		/**
+		 * Räume sowie Walk wird Instanziert.
+		 */
 		gen.createRooms();
 		Walk move = new Walk(gen.getRooms());
 		Room currentRoom = gen.getRooms()[0][0];
@@ -58,6 +68,9 @@ public class Game {
 		System.out.println("Du musst aus dem Haus entkommen!!!");
 		System.out.println("Drücke h für die Steuerung.");
 
+		/**
+		 * Switch-Case für alle Möglichen Eingaben
+		 */
 		while (exit == 0) {
 			System.out.print("Was willst du machen? ->  ");
 			option = sc.nextLine();
@@ -70,6 +83,9 @@ public class Game {
 				break;
 			}
 
+			/*
+			 * Inventar wird kontrolliert
+			 */
 			case "i": {
 				String allItems = " " + gen.generateItemsToString(player);
 
@@ -77,6 +93,9 @@ public class Game {
 				break;
 			}
 
+			/*
+			 * Fluchtweg wird kontrolliert
+			 */
 			case "f": {
 				if (player.getFoundItems().size() != 0) {
 					if (player.getFoundItems().get(0).getName().equals("Key") && currentRoom.isEnd()) {
@@ -91,7 +110,11 @@ public class Game {
 				}
 				break;
 			}
-
+			
+			
+			/*
+			 * Items werden Kontrolliert
+			 */
 			case "c": {
 				if (currentRoom.getItem() != null) {
 					System.out.println(
@@ -104,6 +127,9 @@ public class Game {
 
 				break;
 			}
+			/*
+			 * Bewegung nach Norden wird kontrolliert
+			 */
 			case "n": {
 				newRoom = move.walkNorth(currentRoom);
 				if (newRoom != null) {
@@ -118,7 +144,10 @@ public class Game {
 				}
 				break;
 			}
-
+			
+			/*
+			 * Bewegung nach Osten wird kontrolliert
+			 */
 			case "e": {
 				newRoom = move.walkEast(currentRoom);
 				if (newRoom != null) {
@@ -134,6 +163,9 @@ public class Game {
 				break;
 			}
 
+			/*
+			 * Bewegung nach Süden wird kontrolliert
+			 */
 			case "s": {
 				newRoom = move.walkSouth(currentRoom);
 				if (newRoom != null) {
@@ -148,6 +180,9 @@ public class Game {
 				break;
 			}
 
+			/*
+			 * Bewegung nach Westen wird kontrolliert
+			 */
 			case "w": {
 				newRoom = move.walkWest(currentRoom);
 				if (newRoom != null) {
@@ -161,7 +196,9 @@ public class Game {
 				}
 				break;
 			}
-
+			/*
+			 * Man verlässt das Spiel
+			 */
 			case "exit": {
 				exit = 1;
 				sc.close();

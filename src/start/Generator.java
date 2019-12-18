@@ -86,7 +86,7 @@ public class Generator {
 	 * Erstellt ein Monster-Objekt und gibt es zurück.
 	 */
 	public Monster createMonster() {
-		Monster mon = new Monster(10, 2, "Hurensohn");
+		Monster mon = new Monster(10, 2, "Monster");
 		return mon;
 	}
 
@@ -99,7 +99,8 @@ public class Generator {
 	}
 
 	/*
-	 * @param allItems Spiechert alle Items des SPieler Weisst dem Spieler die Items
+	 * @param allItems Spiechert alle Items des SPieler Weisst dem Spieler die Items zu.
+	 * Gibt für jeden Fall einen String zurück.
 	 * zu, die er aufgenommen hat.
 	 */
 	public String generateItemsToString(Player player) {
@@ -107,14 +108,14 @@ public class Generator {
 		int counter = 0;
 		for (Item item : player.getFoundItems()) {
 			if (counter == 0) {
-				allItems += "a " + item.getName();
+				allItems += "ein " + item.getName();
 				counter++;
 			} else {
-				allItems += ", a " + item.getName() + " ";
+				allItems += ", ein " + item.getName() + " ";
 			}
 		}
 		if (allItems.equals("")) {
-			allItems = "no item.";
+			allItems = "Keine Items verfügbar.";
 		}
 
 		return allItems;
